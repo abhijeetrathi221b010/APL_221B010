@@ -1,0 +1,100 @@
+Microsoft Windows [Version 10.0.26100.3624]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\dharmendra.sharma>docker --version
+Docker version 28.0.1, build 068a01e
+
+C:\Users\dharmendra.sharma>docker pull hello-world
+Using default tag: latest
+latest: Pulling from library/hello-world
+Digest: sha256:fc08e727181e2668370f47db6319815c279ed887e2f01be96b94106bc2781430
+Status: Image is up to date for hello-world:latest
+docker.io/library/hello-world:latest
+
+C:\Users\dharmendra.sharma>docker pull hello-world
+Using default tag: latest
+latest: Pulling from library/hello-world
+Digest: sha256:fc08e727181e2668370f47db6319815c279ed887e2f01be96b94106bc2781430
+Status: Image is up to date for hello-world:latest
+docker.io/library/hello-world:latest
+
+C:\Users\dharmendra.sharma>docker run hello-world
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+
+C:\Users\dharmendra.sharma>docker run -it ubuntu
+Unable to find image 'ubuntu:latest' locally
+latest: Pulling from library/ubuntu
+2726e237d1a3: Pull complete
+Digest: sha256:1e622c5f073b4f6bfad6632f2616c7f59ef256e96fe78bf6a595d1dc4376ac02
+Status: Downloaded newer image for ubuntu:latest
+root@50c224b59f32:/# exit
+exit
+
+C:\Users\dharmendra.sharma>docker network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+457f9333da7a   bridge    bridge    local
+003fe84923d3   host      host      local
+43b03739b6ca   none      null      local
+
+C:\Users\dharmendra.sharma>docker network create mongo--network
+f60eee979087a031d509b1adaee317b8fd9ae4e6ffff97c585e70b2f5773a492
+
+C:\Users\dharmendra.sharma>docker network ls
+NETWORK ID     NAME             DRIVER    SCOPE
+457f9333da7a   bridge           bridge    local
+003fe84923d3   host             host      local
+f60eee979087   mongo--network   bridge    local
+43b03739b6ca   none             null      local
+
+C:\Users\dharmendra.sharma>docker run -d -p 27017:27017 --name mongo --network mongo--network -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=admin mongo
+Unable to find image 'mongo:latest' locally
+latest: Pulling from library/mongo
+2726e237d1a3: Already exists
+adf7a2b7606d: Pull complete
+1a08ed22982f: Pull complete
+90ade5227b11: Pull complete
+66eecf3d03b3: Pull complete
+8fc21ef9255d: Pull complete
+29fee425ac1e: Pull complete
+7e4d144a0672: Pull complete
+Digest: sha256:688d9e755d2b6093cf00ac553dd37ece1562400558515c977f57b3cc8df4eeb6
+Status: Downloaded newer image for mongo:latest
+d1bf9f9d8c128d3ceac5af507348b55a7f7c3dcf569f2d0df09581797797a863
+
+C:\Users\dharmendra.sharma>docker run -d -p 8081:8081 --name mongo-express --network mongo--network -e ME_CONFIG_MONGODB_ADMINUSERNAME=admin -e ME_CONFIG_MONGODB_ADMINPASSWORD=admin -e ME_CONFIG_MONGODB_URL="mongodb://admin:admin@mongo:2 7017" mongo-express
+Unable to find image 'mongo-express:latest' locally
+latest: Pulling from library/mongo-express
+619be1103602: Pull complete
+7e9a007eb24b: Pull complete
+5189255e31c8: Pull complete
+88f4f8a6bc8d: Pull complete
+d8305ae32c95: Pull complete
+45b24ec126f9: Pull complete
+9f7f59574f7d: Pull complete
+0bf3571b6cd7: Pull complete
+Digest: sha256:1b23d7976f0210dbec74045c209e52fbb26d29b2e873d6c6fa3d3f0ae32c2a64
+Status: Downloaded newer image for mongo-express:latest
+d0b0fbbc20ddd3a352718229a5c3c06f50bd79decd5e8de8d73f4fd109570e93
+
+C:\Users\dharmendra.sharma>
