@@ -1,0 +1,5 @@
+Set-ExecutionPolicy Unrestricted -Scope CurrentUser
+
+ npm install express axios yargs
+
+node test.js --port=3000 --peers=3001,3002
